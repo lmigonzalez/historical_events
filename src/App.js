@@ -1,24 +1,43 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
+import { Route, Switch } from 'react-router-dom';
+import moment from 'moment';
 import './App.css';
 
+
+import Today from './pages/Today';
+import Tomorrow from './pages/Tomorrow';
+import Yesterday from './pages/Yesterday';
+import Header from './components/Header';
+
+
+
+const today = moment().format('MMM DD YYYY')
+
+
 function App() {
+
+// console.log(today)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+    <Header/>
+
+
+
+   <Switch>
+     <Route path='/' exact>
+        <Today/>
+     </Route>
+
+     <Route path='/yesterday'>
+        <Yesterday/>
+     </Route>
+
+     <Route path='/tomorrow'>
+        <Tomorrow/>
+     </Route>
+   </Switch>
+   </div>
   );
 }
 
