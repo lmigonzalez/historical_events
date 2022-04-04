@@ -17,7 +17,7 @@ const SubHeader = (props) => {
 
   return (
     <div className="sub-header">
-      <input className="date-search" type='date' value={newDate} onChange={handleChange} placeholder = 'Search'/>
+      <input className="date-search" type='date' value={newDate} onChange={handleChange} placeholder = 'Search' size='5'/>
     </div>
   );
 };
