@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import axios from 'axios';
 import moment from 'moment';
 import './App.css';
 
@@ -11,32 +12,106 @@ import Header from './components/Header';
 
 
 
-const today = moment().format('MMM DD YYYY')
+
+
+// const today = moment().format('MMM DD YYYY')
 
 
 function App() {
 
-// console.log(today)
+  const eventsDate = {
+    todayDay: moment().format('DD'),
+		todayMonth: moment().format('MM'),
+    yesterdayDay: moment().subtract(1, 'd').format('DD'),
+		yesterdayMonth: moment().format('MM'),
+    tomorrowDay: moment().add(1, 'd').format('DD'),
+		tomorrowMonth: moment().format('MM'),
+  }
+  
+  const [todayEventData, setTodayEventData] = useState([])
+  const [tomorrowEventData, setTomorrowEventData] = useState([])
+  const [yesterdayEventData, setYesterdayEventData] = useState([])
+
+
+  const todayData = () =>{
+    
+    if(todayEventData.length <= 0){
+      axios.get(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${eventsDate.todayMonth}/${eventsDate.todayDay}`)
+      .then(res=>{
+         
+          setTodayEventData(res.data.events)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+      .finally(fn=>{
+      
+        
+      })
+    }
+    
+  }
+
+  const tomorrowData = () =>{
+    if(tomorrowEventData.length <= 0){
+      axios.get(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${eventsDate.tomorrowMonth}/${eventsDate.tomorrowDay}`)
+      .then(res=>{
+          // console.log('was empty')
+          setTomorrowEventData(res.data.events)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+      .finally(fn=>{
+        // console.log('finally')
+      })
+    }
+
+    
+  }
+
+
+  const yesterdayData = () =>{
+    if(yesterdayEventData.length <= 0){
+      axios.get(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${eventsDate.yesterdayMonth}/${eventsDate.yesterdayDay}`)
+      .then(res=>{
+          // console.log('was empty')
+          setYesterdayEventData(res.data.events)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+      .finally(fn=>{
+        // console.log('finally')
+      })
+    }
+
+  }
+
+
+
 
   return (
-    <div>
+    <div className='main-div'>
     <Header/>
-
-
-
+    <section className='content'>
    <Switch>
      <Route path='/' exact>
-        <Today/>
+        <Redirect to='/today'/>
+     </Route>
+     <Route path='/today' exact>
+        <Today data = {todayEventData} todayData = {todayData} />
      </Route>
 
-     <Route path='/yesterday'>
-        <Yesterday/>
+     <Route path='/yesterday' exact>
+        <Yesterday data= {yesterdayEventData} yesterdayData = {yesterdayData}/>
      </Route>
 
-     <Route path='/tomorrow'>
-        <Tomorrow/>
+     <Route path='/tomorrow' exact>
+        <Tomorrow data = {tomorrowEventData} tomorrowData = {tomorrowData}/>
      </Route>
    </Switch>
+   </section>
    </div>
   );
 }

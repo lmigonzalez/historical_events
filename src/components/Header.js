@@ -1,27 +1,29 @@
 import React from "react";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // No olvides agredar navlink para darle style al link dependiendo de la pagina
 
 
 const Header = () =>{
 
-	const todaysDate = moment().format("MMM Do YYYY")
-	
+	const todaysDate = moment().format("MMM DD")
+	const tomorrowDate = moment().add(1, 'd').format("MMM DD")
+	const yesterdayDate = moment().subtract(1, 'd').format("MMM DD")
+
 
 
 	return(
-		<header>
-			<h2> {todaysDate} </h2>
-			<nav>
-				<ul>
-					<li> <Link to='/yesterday'>Yesterday</Link> </li>
-					<li> <Link to='/'>Today</Link> </li>
-					<li> <Link to= '/tomorrow'>Tomorrow</Link> </li>
+		<header className="header">
+			{/* <h2> {todaysDate} </h2> */}
+			
+				<ul className="links">
+					<li className="link"> <NavLink activeClassName="active-link" to='/yesterday'>Yesterday <br/> <span>--{yesterdayDate}--</span></NavLink></li>
+					<li className="link"> <NavLink activeClassName="active-link" to='/today'>Today <br/> <span>--{todaysDate}--</span> </NavLink> </li>
+					<li className="link"> <NavLink activeClassName="active-link" to= '/tomorrow'>Tomorrow <br/> <span>--{tomorrowDate}--</span></NavLink> </li>
 				</ul>
 
-			</nav>
+	
 		</header>
 	)
 }

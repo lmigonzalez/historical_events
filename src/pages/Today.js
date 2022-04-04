@@ -1,52 +1,41 @@
-import React, {useState, useEffect} from "react";
-import axios from "axios";
-import moment from "moment";
-import TodaysEvents from "./TodaysEvent";
+import React, {useEffect} from "react";
+import Events from "./Event";
+import {TailSpin} from 'react-loader-spinner';
 
 
 
+const Today = (props) =>{
 
+	const {data, todayData} = props
+	const randomKey = () =>{
+		let random = Math.random()* 100000
+		return random
 
-
-
-
-const Today = () =>{
-
-
-	const todaysDateFetchFormat = {
-		monthFormat: moment().format('MM'),
-		dayFormat: moment().format('MM')
 	}
-	
-	const [data, setData] = useState([])
-	// console.log(todaysDateFetchFormat)
-	
-	const getTodayEvents = () =>{
-		axios.get(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${todaysDateFetchFormat.monthFormat}/${todaysDateFetchFormat.dayFormat}`)
-		.then(res=>{
-			setData(res.data.events)
-			// console.log(data)
-		})
-		.catch(err=>{
-			console.log(err)
-		})
-	}
-	
-	const getData =()=>{
-		getTodayEvents()
-	}
+
+	useEffect(()=>{
+		todayData()
+	}, [])
+
 	
 
 
 	return(
-		<div>
-			<h1>Events Today</h1>
-			<button onClick={getData}>Clickkk</button>
-			{data.map((events=>{
-				return(
-					<TodaysEvents events = {events}/>
-				)
-			}))}
+		<div className="event-content">
+			
+			
+			{
+				data.length <= 0? <div className="spinner">
+				<TailSpin  color="#000" height={80} width={80} />
+				</div>:
+				data.map((events=>{
+					return(
+						<Events key = {randomKey()}  events = {events}/>
+					)
+				}))
+			}
+			
+			
 		</div>
 	)
 }

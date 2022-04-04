@@ -2,14 +2,14 @@ import React from "react";
 
 
 
-const TodaysEvents = (props) =>{
+const Events = (props) =>{
 	const {events} = props
 
-	console.log(props.events)
+	// console.log(props.events)
 
 
 	return(
-		<div>
+		<div className="events">
 			<h3>{events.year}</h3>
 			<p>{events.text}</p>
 		</div>
@@ -17,4 +17,5 @@ const TodaysEvents = (props) =>{
 }
 
 
-export default TodaysEvents
+
+export default Events
