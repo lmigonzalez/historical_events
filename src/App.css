@@ -148,7 +148,7 @@ span{
 }
 
 
-.date-search{
+/* .date-search{
   cursor: pointer;
   padding: 0.5rem 1rem;
   background-color: #072227;
@@ -158,7 +158,7 @@ span{
   font-size: 1rem;
   border-radius: 0.3rem;
   font-weight: 600;
-}
+} */
 input[type="date"]::-webkit-calendar-picker-indicator{
   background-color: #fff;
   cursor: pointer;
