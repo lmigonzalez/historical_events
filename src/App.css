@@ -152,7 +152,7 @@ span{
   cursor: pointer;
   padding: 0.5rem 1rem;
   /* background-color: #072227; */
-  color: #000;
+  color: #fff;
   border-style: none;
   margin: 0rem 0.5rem;
   font-size: 1rem;
@@ -163,6 +163,12 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   background-color: #fff;
   cursor: pointer;
  
+}
+input[type="date"]::before {
+  content: attr(placeholder);
+  position: absolute;
+  color: #000;
+  font-size: 1.3rem;
 }
 
 
