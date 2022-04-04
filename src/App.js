@@ -13,10 +13,6 @@ import Header from './components/Header';
 
 
 
-
-// const today = moment().format('MMM DD YYYY')
-
-
 function App() {
 
   const eventsDate = {
@@ -56,18 +52,17 @@ function App() {
     if(tomorrowEventData.length <= 0){
       axios.get(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${eventsDate.tomorrowMonth}/${eventsDate.tomorrowDay}`)
       .then(res=>{
-          // console.log('was empty')
+       
           setTomorrowEventData(res.data.events)
       })
       .catch(err=>{
         console.log(err)
       })
       .finally(fn=>{
-        // console.log('finally')
+    
       })
     }
 
-    
   }
 
 
@@ -75,15 +70,13 @@ function App() {
     if(yesterdayEventData.length <= 0){
       axios.get(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${eventsDate.yesterdayMonth}/${eventsDate.yesterdayDay}`)
       .then(res=>{
-          // console.log('was empty')
+      
           setYesterdayEventData(res.data.events)
       })
       .catch(err=>{
         console.log(err)
       })
-      .finally(fn=>{
-        // console.log('finally')
-      })
+     
     }
 
   }

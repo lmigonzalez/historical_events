@@ -15,7 +15,6 @@ const Yesterday = (props)=>{
 
 
 
-
 	useEffect(()=>{
 		yesterdayData()
 	}, [])
