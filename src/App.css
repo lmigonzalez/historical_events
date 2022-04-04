@@ -22,7 +22,6 @@ p{
 }
 
 .main-div{
-  /* background-color: #35858B; */
   width: 100%;
 }
 
@@ -30,6 +29,7 @@ p{
 .header{
   background-color: #072227;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #fff;
@@ -48,6 +48,7 @@ p{
   height: 100%;
 
 }
+
 .links li{
   display: flex;
   justify-content: space-around;
@@ -77,6 +78,27 @@ span{
   font-weight: 600;
   
 }
+
+.sub-header{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #1A5F7A;
+  padding: 0.5rem 0;
+}
+
+.sub-header button{
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background-color: #072227;
+  color: #fff;
+  border-style: none;
+  margin: 0rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+}
+
 .content{
   max-width: 100%;
   position: relative;
@@ -96,8 +118,9 @@ span{
 .event-content{
   width: 90%;
   margin: 0 auto;
+  padding-top: 2rem;
   display: grid;
-  grid-gap: 0.3rem;
+  grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
 }
 
@@ -105,7 +128,6 @@ span{
   /* width: 40%; */
   min-height: 10rem;
   background-color: #072227;
-  margin: 1rem;
   color: #fff;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -125,6 +147,35 @@ span{
   transform: translate(-50%, -50%);
 }
 
+
+.date-search{
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background-color: #072227;
+  color: #fff;
+  border-style: none;
+  margin: 0rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+  background-color: #fff;
+  cursor: pointer;
+ 
+}
+
+
+.footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1A5F7A;
+  color: #fff;
+  margin-top: 2rem;
+  padding: 2rem 0;
+}
+
 @keyframes events-animation {
   
   0%{
@@ -138,6 +189,19 @@ span{
     transform: scale(1);
   }
 
+
+}
+
+@media(max-width: 450px){
+
+  .links li{
+    width: auto;
+
+  }
+  .event-content{
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+ 
 
 }
 

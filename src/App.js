@@ -8,7 +8,10 @@ import './App.css';
 import Today from './pages/Today';
 import Tomorrow from './pages/Tomorrow';
 import Yesterday from './pages/Yesterday';
+import Search from './pages/Search';
 import Header from './components/Header';
+import SubHeader from './components/SubHeader';
+import Footer from './components/Footer';
 
 
 
@@ -27,10 +30,37 @@ function App() {
   const [todayEventData, setTodayEventData] = useState([])
   const [tomorrowEventData, setTomorrowEventData] = useState([])
   const [yesterdayEventData, setYesterdayEventData] = useState([])
+  const [newSearchData, setNewSearchData] = useState([])
+
+  const [newDate, setNewDate] = useState('')
+  
+
+  const searchNewDate = () =>{
+      setNewSearchData([])
+      const dateSplitFormat = newDate.split('-')
+      const getDay = parseInt(dateSplitFormat[2])
+      const getMonth = parseInt(dateSplitFormat[1])
+      axios.get(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${getMonth}/${getDay}`)
+        .then(res=>{
+          setNewSearchData(res.data.events)
+            // console.log(res)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+        .finally(fn=>{
+      
+        })
+
+  }
+
+  useEffect(()=>{
+    searchNewDate()
+  }, [newDate])
 
 
   const todayData = () =>{
-    
+    setNewDate('')
     if(todayEventData.length <= 0){
       axios.get(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${eventsDate.todayMonth}/${eventsDate.todayDay}`)
       .then(res=>{
@@ -49,6 +79,7 @@ function App() {
   }
 
   const tomorrowData = () =>{
+    setNewDate('')
     if(tomorrowEventData.length <= 0){
       axios.get(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${eventsDate.tomorrowMonth}/${eventsDate.tomorrowDay}`)
       .then(res=>{
@@ -67,6 +98,7 @@ function App() {
 
 
   const yesterdayData = () =>{
+    setNewDate('')
     if(yesterdayEventData.length <= 0){
       axios.get(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${eventsDate.yesterdayMonth}/${eventsDate.yesterdayDay}`)
       .then(res=>{
@@ -87,6 +119,8 @@ function App() {
   return (
     <div className='main-div'>
     <Header/>
+    <SubHeader setNewDate = {setNewDate} newDate = {newDate}/>
+    
     <section className='content'>
    <Switch>
      <Route path='/' exact>
@@ -103,8 +137,13 @@ function App() {
      <Route path='/tomorrow' exact>
         <Tomorrow data = {tomorrowEventData} tomorrowData = {tomorrowData}/>
      </Route>
+     <Route path='/search'>
+        <Search data ={newSearchData} searchNewDate = {searchNewDate} newDate = {newDate}/>
+     </Route>
    </Switch>
    </section>
+
+   <Footer/>
    </div>
   );
 }
