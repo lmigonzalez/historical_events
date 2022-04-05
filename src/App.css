@@ -87,12 +87,19 @@ span{
   padding: 0.5rem 0;
 }
 
-.sub-header button{
+
+.sub-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.date-search{
   cursor: pointer;
   padding: 0.5rem 1rem;
-  background-color: #072227;
-  color: #fff;
-  border-style: none;
+  color: #000;
+  border-style:groove;
   margin: 0rem 0.5rem;
   font-size: 1rem;
   border-radius: 0.3rem;
@@ -148,17 +155,7 @@ span{
 }
 
 
-.date-search{
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  /* background-color: #072227; */
-  color: #000;
-  border-style: none;
-  margin: 0rem 0.5rem;
-  font-size: 1rem;
-  border-radius: 0.3rem;
-  font-weight: 600;
-}
+
 input[type="date"]::-webkit-calendar-picker-indicator{
   background-color: #fff;
   cursor: pointer;
