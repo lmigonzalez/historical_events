@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import {InputGroup, FormControl} from 'react-bootstrap';
 
 const SubHeader = (props) => {
   const history = useHistory();
@@ -13,7 +14,7 @@ const SubHeader = (props) => {
   return (
     <div className="sub-header">
       <div className="sub-content">
-        <h3>Search:</h3>
+        {/* <h3>Search:</h3>
         <input
           className="date-search"
           type="date"
@@ -21,7 +22,15 @@ const SubHeader = (props) => {
           onChange={handleChange}
           placeholder="Search"
           size="5"
-        />
+        /> */}
+        <InputGroup>
+          <FormControl
+            placeholder="Username"
+            type="date"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </InputGroup>
       </div>
     </div>
   );

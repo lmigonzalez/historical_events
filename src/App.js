@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import Today from './pages/Today';
