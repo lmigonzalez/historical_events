@@ -95,6 +95,11 @@ span{
   color: #fff;
 }
 
+.sub-content h3{
+  margin-right: 1rem;
+  
+}
+
 .date-search{
   cursor: pointer;
   padding: 0.5rem 1rem;

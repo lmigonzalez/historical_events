@@ -24,6 +24,7 @@ const SubHeader = (props) => {
           size="5"
         /> */}
         <InputGroup>
+        <h3>Search: </h3>
           <FormControl
             placeholder="Username"
             type="date"
