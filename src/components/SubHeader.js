@@ -30,6 +30,7 @@ const SubHeader = (props) => {
             type="date"
             aria-label="Username"
             aria-describedby="basic-addon1"
+            onChange={handleChange}
           />
         </InputGroup>
       </div>

@@ -1,5 +1,4 @@
-import React, {useEffect} from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 import {TailSpin} from 'react-loader-spinner';
 
 import Events from "./Event";
@@ -7,7 +6,7 @@ import Events from "./Event";
 
 const Search = (props) =>{
 	
-	const {data, searchNewDate, newDate} = props
+	const {data} = props
 
 	const randomKey = () =>{
 		let random = Math.random()* 100000
