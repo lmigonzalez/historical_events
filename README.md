@@ -1,4 +1,4 @@
-# <center> Keep Notes </center>
+# <center> Historical Events </center>
 
 ## A brief description: ##
 This fantastic website uses a 3rd party API to get the most important events that occur on any day. Users can choose between several options: with a single click, you can see the events that happened yesterday, today, or tomorrow. You also can search events by date, providing the day you witch. This is a helpful website for those who like history.
